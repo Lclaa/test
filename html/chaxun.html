@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery 遮罩层</title>
+<style type="text/css">
+/* 半透明的遮罩层 */
+#overlay {
+  background: #000;
+  filter: alpha(opacity=50); /* IE的透明度 */
+  opacity: 0.5; /* 透明度 */
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100; /* 此处的图层要大于页面 */
+  display:none;
+  _background-color:#a0a0a0; /* 解决IE6的不透明问题 */
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.4.0.min.js"></script>
+<script type="text/javascript">
+/* 显示遮罩层 */
+function showOverlay() {
+  $("body").css({overflow:"hidden"})
+  $("#overlay").height(document.body.scrollHeight);
+  $("#overlay").width(document.body.scrollWidth);
+  // fadeTo第一个参数为速度，第二个为透明度
+  // 多重方式控制透明度，保证兼容性，但也带来修改麻烦的问题
+  $("#overlay").fadeTo(200, 0.5);
+  // 解决窗口缩小时放大后不全屏遮罩的问题
+  // 简单来说，就是窗口重置的问题
+  $(window).resize(function(){
+    $("#overlay").height(document.body.scrollHeight);
+    $("#overlay").width(document.body.scrollWidth);
+  });
+}
+/* 隐藏覆盖层 */
+function hideOverlay() {
+  $("#overlay").fadeOut(200);
+}
+$(".shadow",".column").bind("touchmove",function(e){
+
+e.prevenDefault();
+
+});
+
+</script>
+</head>
+<body>
+<button onClick="showOverlay();" style=" width:100px; height:60px; margin:40px auto 40px auto; display:block;">打开遮罩层</button>
+<button onClick="hideOverlay();" style=" width:100px; height:60px; z-index:101; display:block; position:absolute; left:10px; top:10px;">关闭遮罩层</button>
+<!-- <h3 align="center"><a href="//www.jb51.net/">阅谁问君诵，水落清香浮。</a></h3> -->
+<div style="height:10000px;">11212</div>
+<div id="overlay">22222</div>
+</body>
+</html>
