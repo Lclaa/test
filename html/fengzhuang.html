@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wyInput {
+  width: 300px;
+  margin: 20px auto;
+  padding: 10px 10px;
+  background: #EEE4D8;
+  border-radius: 5px;
+  border: 1px solid #B4B3AE;
+  position: relative;
+}
+.wyInput .wyinput-group {
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+}
+.wyInput .wyinput-group input {
+  width: 80%;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #B4B3AE;
+  float: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 0 5px;
+}
+.wyInput .wyinput-group a {
+  float: left;
+  width: 20%;
+  background: #219FB6;
+  color: #fff;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.wyInput .wyinput-group a:hover {
+  background: #35ACC1;
+}
+.wyInput .wyinput-drop {
+  position: absolute;
+  top: 40px;
+  z-index: 1000;
+  background: #F2F2F2;
+  border: 1px solid #EEE4D8;
+  border-top-color: transparent;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 5px 5px;
+}
+.wyInput .wyinput-drop p a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  width: 100%;
+  height: 24px;
+  line-height: 24px;
+  display: block;
+}
+.wyInput .wyinput-drop p a:hover {
+  color: #fff;
+  background: #35ACC1;
+}
+
+    </style>
+</head>
+<body>
+    <script src="../js/jquery-3.4.0.min.js"></script>
+    <script src="../js/wy_select.js"></script>
+    
+        <div class="wyInput" id="myInput">
+                <div class="wyinput-group">
+                    <input type="text" placeholder="请输入关键字">
+                    <a href="#" class="wyinput-btn">搜 索</a>
+                </div>
+                <div class="wyinput-drop">
+            
+                </div>
+            </div>
+            <script> 
+              $(function () {
+                var es6This = this;
+                    $.ajax({
+                      url: '../json/xiala.json',
+                      type: 'get',
+                      dataType: 'json',
+                      async: false,
+                      success: function (res) {
+                          console.log(res)
+                          var data = res.result.list;
+                          console.log(data)
+                          // var arrOptions=es6This.TemStringOption(data);
+                          $("#myInput").wy_inselect(data);
+                          var arrOptions = TemStringOption(data);
+                      },
+                      error: function (err) {
+                          console.log(err)
+                      }
+                  })
+               
+                  function TemStringOption(list){
+                    console.log(list)
+                  }
+                    //许传入类似案例的json对象
+                    // $("#myInput").wy_inselect([{name:'紫色',age:'16'},{name:'yellow',age:'16'},{name:'pink',age:'16'},{name:'whrite',age:'16'},{name:'1111111',age:'16'}]);
+                 
+                  })
+            </script>
+</body>
+</html>

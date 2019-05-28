@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title>bootstrap 图片查看</title>
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<td>
+	<center>
+		<img style="height: 100px;width: 100px;" 
+		onmouseover="this.style.cursor='pointer';this.style.cursor='hand'" 
+		onmouseout="this.style.cursor='default'"  
+		src="../img/cc178a20314c4d409dbee7b5419d796c.jpeg" 
+		onclick="javascript:showimage('../img/cc178a20314c4d409dbee7b5419d796c.jpeg');" />
+	</center>
+</td>
+  
+
+		<!--放大图的imgModal-->
+        <div class="modal fade bs-example-modal-lg text-center" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" >
+          <div class="modal-dialog modal-lg" style="display: inline-block; width: auto;">
+            <div class="modal-content">
+             <img  id="imgInModalID"  
+			 class="carousel-inner img-responsive img-rounded" 
+			 onclick="closeImageViewer()"
+			 onmouseover="this.style.cursor='pointer';this.style.cursor='hand'" 
+			 onmouseout="this.style.cursor='default'"  
+			 />
+            </div>
+          </div>
+        </div>
+<script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+<script type="text/javascript">
+	//显示大图    
+   function showimage(source){
+    console.log(source)
+         $("#imgModal").find("#imgInModalID").attr("src",source);
+         $("#imgModal").modal();
+      
+     }
+	 //关闭
+	function closeImageViewer(){
+        console.log(456)
+		$("#imgModal").modal('hide');
+	}
+</script>
+</html>
